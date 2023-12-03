@@ -15,14 +15,14 @@ def checkIfGear(arr, i, j):
         return 0
 
 
-def getNumber(arr, i, j, arraySize):
+def getNumber(arr, i, j):
     string = arr[i][j]
     jj = j
-    while jj + 1 < arraySize and arr[i][jj + 1].isdigit():
+    while jj + 1 < arr[i] and arr[i][jj + 1].isdigit(): # search for additional numbers on right
         string = string + arr[i][jj + 1]
         jj += 1
     jj = j
-    while jj - 1 >= 0 and arr[i][jj - 1].isdigit():
+    while jj - 1 >= 0 and arr[i][jj - 1].isdigit(): # search for additional numbers on left
         string = arr[i][jj - 1] + string
         jj -= 1
     return int(string)
@@ -35,14 +35,14 @@ def checkSurrounding(arr, i, j):
         buffer = 0
         for jj in range(j - 1, j + 2):
             if arr[ii][jj].isdigit():
-                if buffer == 0:
-                    numbers.append(getNumber(arr, ii, jj, len(arr[ii])))
+                if buffer == 0: # if it is 1st occurence of digit in a line find it and save in a list
+                    numbers.append(getNumber(arr, ii, jj))
                 buffer = 1
             else:
-                if buffer == 1:
+                if buffer == 1: # if found another char other than digit reset buffer and add to digit counter
                     buffer = 0
                     digits += 1
-        if buffer == 1:
+        if buffer == 1: # if digit is the last char in 3rd column of 3x3 array then add it to counter
             digits += 1
     return digits, numbers
 
