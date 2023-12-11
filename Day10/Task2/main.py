@@ -51,7 +51,7 @@ result = 0
 arr = []
 line = []
 if __name__ == '__main__':
-    file = read_input("text.txt")
+    file = read_input("test.txt")
     starting_points = []
     s1 = np.where(file == 'S')[0][0]  # x
     s2 = np.where(file == 'S')[1][0]  # y
@@ -79,7 +79,11 @@ if __name__ == '__main__':
         yy = y
         x = x + tup[0]
         y = y + tup[1]
-
+    #p1=((0,0),(0,5),(6,5),(6,0),(0,0))
     p = Polygon(line)
+    #p11 = Polygon(p1)
+    print(p.area)
+    print(len(line))
+    print((len(line)/2)-1)
     print("results: ")
     print(int(p.area) - len(line) / 2 + 1)  # calculate area of polygon and remove pipe area
